@@ -17,14 +17,9 @@ namespace CustomersApi.Services
         }
         public void CreateCustomers(Customers customers)
         {
-            Customers values = new Customers();
+            //Customers values = new Customers();
             if (customers != null)
             {
-                values.firstname = customers.firstname;
-                values.lastname = customers.lastname;
-                values.age = customers.age;
-                values.DOB = customers.DOB;
-                values.address = customers.address;
                 _customerDao.Create(customers);
             }
         }
@@ -54,20 +49,16 @@ namespace CustomersApi.Services
             if (customers != null)
             {
                 var data = _customerDao.GetCustomer().Result.FirstOrDefault(x => x.CustomerId == customers.CustomerId);
-                Customers result = new Customers();
-                result = data;
                 if (data != null)
                 {
-                    result.firstname = customers.firstname;
-                    result.lastname = customers.lastname;
-                    result.age = customers.age;
-                    result.DOB = customers.DOB;
-                    result.address = customers.address;
-                    _customerDao.Update(result);
+                    data.firstname = customers.firstname;
+                    data.lastname = customers.lastname;
+                    data.age = customers.age;
+                    data.DOB = customers.DOB;
+                    data.address = customers.address;
+                    _customerDao.Update(data);
                 }
             }      
-        }
-
-        
+        }       
     }
 }

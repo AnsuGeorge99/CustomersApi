@@ -2,7 +2,7 @@
 
 namespace CustomersApi.Migrations
 {
-    public partial class initial : Migration
+    public partial class _001 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,9 +14,9 @@ namespace CustomersApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     firstname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     lastname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    age = table.Column<int>(type: "int", maxLength: 2, nullable: false),
-                    DOB = table.Column<int>(type: "int", maxLength: 10, nullable: false),
-                    address = table.Column<string>(type: "nvarchar(50)", maxLength: 2, nullable: false)
+                    age = table.Column<int>(type: "int", nullable: false),
+                    DOB = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    address = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {

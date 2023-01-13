@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomersApi.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20221122102438_initial")]
-    partial class initial
+    [Migration("20230113073142_001")]
+    partial class _001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,17 +27,16 @@ namespace CustomersApi.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("DOB")
-                        .HasMaxLength(10)
-                        .HasColumnType("int");
+                    b.Property<string>("DOB")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("address")
                         .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("age")
-                        .HasMaxLength(2)
                         .HasColumnType("int");
 
                     b.Property<string>("firstname")

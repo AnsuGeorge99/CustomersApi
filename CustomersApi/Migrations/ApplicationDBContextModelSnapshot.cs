@@ -31,11 +31,10 @@ namespace CustomersApi.Migrations
 
                     b.Property<string>("address")
                         .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("age")
-                        .HasMaxLength(2)
                         .HasColumnType("int");
 
                     b.Property<string>("firstname")
