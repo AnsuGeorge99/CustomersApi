@@ -22,6 +22,7 @@ namespace CustomersApi
 {
     public class Startup
     {
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,6 +36,16 @@ namespace CustomersApi
 
             services.AddControllers();
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                        builder.AllowAnyHeader();
+                        builder.AllowAnyMethod();
+                    });
+            });
             services.AddScoped<ICustomerDao, CustomerDao>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddSwaggerGen(c =>
@@ -56,6 +67,19 @@ namespace CustomersApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CustomersApi v1"));
             }
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+            app.UseCors(MyAllowSpecificOrigins);
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Customers}/{action=AdminLogin}/{id?}");
+            });
+            
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
@@ -65,17 +89,6 @@ namespace CustomersApi
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
-            });
-
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
             });
         }
     }

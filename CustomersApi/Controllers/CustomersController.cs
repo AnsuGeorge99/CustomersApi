@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace CustomersApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class CustomersController : Controller
     {
         private readonly ICustomerService _customersService;
         public CustomersController(ICustomerService customersService)
@@ -19,7 +19,7 @@ namespace CustomersApi.Controllers
             _customersService = customersService;
         }
 
-        [HttpGet]
+        [HttpGet("getCustomers")]
         public async Task<IEnumerable<Customers>> GetCustomers()
         {
             try
@@ -33,7 +33,7 @@ namespace CustomersApi.Controllers
             }
         }
 
-        [HttpPost("CustomerPost")]
+        [HttpPost("customerPost")]
         public IActionResult CustomerPost(Customers customers)
         {
             try
@@ -48,7 +48,7 @@ namespace CustomersApi.Controllers
         }
 
         
-        [HttpPut("CustomerPut")]
+        [HttpPut("customerPut")]
         public IActionResult CustomerPut([FromBody] Customers customers)
         {
             try
@@ -63,7 +63,7 @@ namespace CustomersApi.Controllers
             }
         }
 
-        [HttpDelete("DeleteCustomers/{id}")]
+        [HttpDelete("deleteCustomers/{id}")]
         public IActionResult DeleteCustomers(int id)
         {
             try
@@ -76,7 +76,7 @@ namespace CustomersApi.Controllers
                 return BadRequest();
             }
         }
-        [HttpPost("AdminLogin")]
+        [HttpPost("adminLogin")]
         public IActionResult AdminLogin(Login login)
         {
             try 
@@ -89,7 +89,7 @@ namespace CustomersApi.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("GetCustomer/{id}")]
+        [HttpGet("getCustomer/{id}")]
         public IActionResult GetCustomerById(int id)
         {
             return Ok(_customersService.GetCustomersById(id));
