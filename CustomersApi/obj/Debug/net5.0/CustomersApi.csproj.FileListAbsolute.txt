@@ -136,3 +136,5 @@ D:\Final DemoProject\CustomersApi-React\CustomersApi\obj\Debug\net5.0\refint\Cus
 D:\Final DemoProject\CustomersApi-React\CustomersApi\obj\Debug\net5.0\CustomersApi.pdb
 D:\Final DemoProject\CustomersApi-React\CustomersApi\obj\Debug\net5.0\CustomersApi.genruntimeconfig.cache
 D:\Final DemoProject\CustomersApi-React\CustomersApi\obj\Debug\net5.0\ref\CustomersApi.dll
+D:\Final DemoProject\CustomersApi-React\CustomersApi\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\Final DemoProject\CustomersApi-React\CustomersApi\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
